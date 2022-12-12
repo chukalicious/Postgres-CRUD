@@ -18,6 +18,6 @@ Simple Web API using `Node.js` and `Express`,
 
 
 
-<a href="https://documenter.getpostman.com/view/12258213/2s8YzTUhpw" target="_blank">Documentation published via Postman</a>
+<a href="https://documenter.getpostman.com/view/12258213/2s8YzTUhpw" target="_">Documentation published via Postman</a>
 
 
