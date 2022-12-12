@@ -9,8 +9,9 @@ Simple Web API using `Node.js` and `Express`,
 ## Project Setup
 
 - [ ] clone this repository.
-- [ ] **CD into the folder** where you cloned the repo.
-- [ ] type `npm i` to download dependencies.
+- [ ] **CD into its root directory** where you cloned the repo.
+- [ ] enter `npm i` to download dependencies
+- [ ] enter `npm run` server to start the server
 
 ### Endpoints included: 
 
