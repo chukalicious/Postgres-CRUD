@@ -45,6 +45,24 @@ router.post("/", (req, res) => {
     });
 });
 
+router.put("/:id", (req, res) => {
+  const changes = req.body;
+  Comments.update(req.params.id, changes)
+    .then((comment) => {
+      if (comment) {
+        res.status(200).json(comment);
+      } else {
+        res.status(404).json({ message: "The comment could not be found" });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        message: "Error updating the comment",
+      });
+    });
+});
+
 router.delete("/:id", (req, res) => {
   Comments.destroy(req.params.id)
     .then((count) => {

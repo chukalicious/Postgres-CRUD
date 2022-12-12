@@ -6,6 +6,7 @@ module.exports = {
   get,
   getByID,
   add,
+  update,
   destroy,
 };
 
@@ -24,6 +25,10 @@ function add(comment) {
     .then((comment) => {
       return comment;
     });
+}
+
+function update(id, changes) {
+  return db("comments").where({ id }).update(changes, "*");
 }
 
 function destroy(id) {
