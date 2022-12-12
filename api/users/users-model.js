@@ -11,23 +11,21 @@ module.exports = {
   // findDogs,
 };
 
-function get(query) {
-  const { page = 1, limit = 2, sortby = "id", sortdir = "asc" } = query;
-  const offset = limit * (page - 1);
-
-  const rows = db("users").orderBy(sortby, sortdir).limit(limit).offset(offset);
-
-  return rows;
+function get() {
+  return db("users");
 }
 
 function getByID(id) {
   return db("users").where({ id }).first();
 }
 
-async function add(user) {
-  const [id] = await db("users").insert(user);
-
-  return getById(id);
+function add(user) {
+  return db("users")
+    .insert(user)
+    .into("users")
+    .then((user) => {
+      return user;
+    });
 }
 
 function remove(id) {

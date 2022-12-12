@@ -8,7 +8,7 @@ const Users = require("./api/users/users-model");
 const Replies = require("./api/replies/replies-model");
 
 server.get("/api/users", (req, res) => {
-  Users.get(req.query)
+  Users.get()
     .then((users) => {
       res.status(200).json(users);
     })
