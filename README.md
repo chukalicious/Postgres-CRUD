@@ -13,6 +13,7 @@ Simple Web API using `Node.js` and `Express`
 - [ ] **CD into its root directory** where you cloned the repo
 - [ ] enter `npm i` to download dependencies
 - [ ] enter `npm run` server to start the server
+- [ ] running locally on `port 4000`
 - [ ] create `.env` file and create a variable named `DATABASE_URL=` and give it the value of a postgress database
 - [ ] connection line example: `DATABASE_URL=postgres://username:password@localHost:5434/databaseName`
 - [ ] create knex migrations for your data. the `knexfile.js` file has the configurations for the data directories that will be created for the schemas and the seeds, as per knex documentation
