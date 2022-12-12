@@ -1,33 +1,25 @@
-const Adopter = require("./adopters-model");
 const express = require("express");
-
+const Users = require("./users-model");
 const router = express.Router();
 
-// ADOPTERS ENDPOINTS
-// ADOPTERS ENDPOINTS
-// ADOPTERS ENDPOINTS
-router.get("/", (req, res) => {
-  // inside the body req.body
-  // inside parameters of the path req.params
-  // inside the query string req.query
-  // inside a header req.headers
-  Adopter.find(req.query)
-    .then((adopters) => {
-      res.status(200).json(adopters);
+router.get("/api/users", (req, res) => {
+  Users.get()
+    .then((users) => {
+      res.status(200).json(users);
     })
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error retrieving the adopters",
+        message: "Error retrieving the users",
       });
     });
 });
 
-router.get("/:id", (req, res) => {
-  Adopter.findById(req.params.id)
-    .then((adopter) => {
-      if (adopter) {
-        res.status(200).json(adopter);
+router.get("/api/users/:id", (req, res) => {
+  Users.getByID(req.params.id)
+    .then((user) => {
+      if (user) {
+        res.status(200).json(user);
       } else {
         res.status(404).json({ message: "Adopter not found" });
       }
@@ -35,13 +27,13 @@ router.get("/:id", (req, res) => {
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error retrieving the adopter",
+        message: "Error retrieving the user",
       });
     });
 });
 
-router.get("/:id/dogs", (req, res) => {
-  Adopter.findDogs(req.params.id)
+router.get("/api/adopters/:id/dogs", (req, res) => {
+  Users.findDogs(req.params.id)
     .then((dogs) => {
       if (dogs.length > 0) {
         res.status(200).json(dogs);
@@ -57,27 +49,26 @@ router.get("/:id/dogs", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
-  Adopter.add(req.body)
-    .then((adopter) => {
-      res.status(201).json(adopter);
+router.post("/api/users", (req, res) => {
+  Users.add(req.body)
+    .then((user) => {
+      res.status(201).json(user);
     })
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error adding the adopter",
+        message: "Error adding the user",
       });
     });
 });
 
-// /api/delete-reource   { id: 12 }
-router.delete("/:id", (req, res) => {
-  Adopter.remove(req.params.id)
+router.delete("/api/users/:id", (req, res) => {
+  Users.remove(req.params.id)
     .then((count) => {
       if (count > 0) {
-        res.status(200).json({ message: "The adopter has been nuked" });
+        res.status(200).json({ message: "The user has been nuked" });
       } else {
-        res.status(404).json({ message: "The adopter could not be found" });
+        res.status(404).json({ message: "The user could not be found" });
       }
     })
     .catch((error) => {
@@ -88,22 +79,20 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-router.put("/:id", (req, res) => {
+router.put("/api/users/:id", (req, res) => {
   const changes = req.body;
-  Adopter.update(req.params.id, changes)
-    .then((adopter) => {
-      if (adopter) {
-        res.status(200).json(adopter);
+  Users.update(req.params.id, changes)
+    .then((user) => {
+      if (user) {
+        res.status(200).json(user);
       } else {
-        res.status(404).json({ message: "The adopter could not be found" });
+        res.status(404).json({ message: "The user could not be found" });
       }
     })
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error updating the adopter",
+        message: "Error updating the user",
       });
     });
 });
-
-module.exports = router;
