@@ -45,4 +45,21 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete("/:id", (req, res) => {
+  Comments.destroy(req.params.id)
+    .then((count) => {
+      if (count > 0) {
+        res.status(200).json({ message: "The comment has been deleted" });
+      } else {
+        res.status(404).json({ message: "The comment could not be found" });
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({
+        message: "Error removing the comment",
+      });
+    });
+});
+
 module.exports = router;

@@ -6,6 +6,7 @@ module.exports = {
   get,
   getByID,
   add,
+  destroy,
 };
 
 function get() {
@@ -23,4 +24,8 @@ function add(comment) {
     .then((comment) => {
       return comment;
     });
+}
+
+function destroy(id) {
+  return db("comments").where({ id }).del();
 }
