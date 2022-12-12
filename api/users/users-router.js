@@ -2,7 +2,7 @@ const express = require("express");
 const Users = require("./users-model");
 const router = express.Router();
 
-router.get("/api/users", (req, res) => {
+router.get("/", (req, res) => {
   Users.get()
     .then((users) => {
       res.status(200).json(users);
@@ -15,7 +15,7 @@ router.get("/api/users", (req, res) => {
     });
 });
 
-router.get("/api/users/:id", (req, res) => {
+router.get("/:id", (req, res) => {
   Users.getByID(req.params.id)
     .then((user) => {
       if (user) {
@@ -49,7 +49,7 @@ router.get("/api/adopters/:id/dogs", (req, res) => {
     });
 });
 
-router.post("/api/users", (req, res) => {
+router.post("/", (req, res) => {
   Users.add(req.body)
     .then((user) => {
       res.status(201).json(user);
@@ -62,7 +62,7 @@ router.post("/api/users", (req, res) => {
     });
 });
 
-router.delete("/api/users/:id", (req, res) => {
+router.delete("/:id", (req, res) => {
   Users.remove(req.params.id)
     .then((count) => {
       if (count > 0) {
@@ -79,7 +79,7 @@ router.delete("/api/users/:id", (req, res) => {
     });
 });
 
-router.put("/api/users/:id", (req, res) => {
+router.put("/:id", (req, res) => {
   const changes = req.body;
   Users.update(req.params.id, changes)
     .then((user) => {
@@ -96,3 +96,5 @@ router.put("/api/users/:id", (req, res) => {
       });
     });
 });
+
+module.exports = router;
