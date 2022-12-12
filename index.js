@@ -4,30 +4,27 @@ const server = express();
 
 server.use(express.json());
 
-const Comments = require("./api/comments/comments-model");
+const Users = require("./api/users/users-model");
 const Replies = require("./api/replies/replies-model");
 
-// ADOPTERS ENDPOINTS
-// ADOPTERS ENDPOINTS
-// ADOPTERS ENDPOINTS
-server.get("/api/adopters", (req, res) => {
-  Comments.find(req.query)
-    .then((adopters) => {
-      res.status(200).json(adopters);
+server.get("/api/users", (req, res) => {
+  Users.get(req.query)
+    .then((users) => {
+      res.status(200).json(users);
     })
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error retrieving the adopters",
+        message: "Error retrieving the users",
       });
     });
 });
 
-server.get("/api/adopters/:id", (req, res) => {
-  Comments.findById(req.params.id)
-    .then((adopter) => {
-      if (adopter) {
-        res.status(200).json(adopter);
+server.get("/api/users/:id", (req, res) => {
+  Users.getByID(req.params.id)
+    .then((user) => {
+      if (user) {
+        res.status(200).json(user);
       } else {
         res.status(404).json({ message: "Adopter not found" });
       }
@@ -35,13 +32,13 @@ server.get("/api/adopters/:id", (req, res) => {
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error retrieving the adopter",
+        message: "Error retrieving the user",
       });
     });
 });
 
 server.get("/api/adopters/:id/dogs", (req, res) => {
-  Comments.findDogs(req.params.id)
+  Users.findDogs(req.params.id)
     .then((dogs) => {
       if (dogs.length > 0) {
         res.status(200).json(dogs);
@@ -57,26 +54,26 @@ server.get("/api/adopters/:id/dogs", (req, res) => {
     });
 });
 
-server.post("/api/adopters", (req, res) => {
-  Comments.add(req.body)
-    .then((adopter) => {
-      res.status(201).json(adopter);
+server.post("/api/users", (req, res) => {
+  Users.add(req.body)
+    .then((user) => {
+      res.status(201).json(user);
     })
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error adding the adopter",
+        message: "Error adding the user",
       });
     });
 });
 
-server.delete("/api/adopters/:id", (req, res) => {
-  Comments.remove(req.params.id)
+server.delete("/api/users/:id", (req, res) => {
+  Users.remove(req.params.id)
     .then((count) => {
       if (count > 0) {
-        res.status(200).json({ message: "The adopter has been nuked" });
+        res.status(200).json({ message: "The user has been nuked" });
       } else {
-        res.status(404).json({ message: "The adopter could not be found" });
+        res.status(404).json({ message: "The user could not be found" });
       }
     })
     .catch((error) => {
@@ -87,20 +84,20 @@ server.delete("/api/adopters/:id", (req, res) => {
     });
 });
 
-server.put("/api/adopters/:id", (req, res) => {
+server.put("/api/users/:id", (req, res) => {
   const changes = req.body;
-  Comments.update(req.params.id, changes)
-    .then((adopter) => {
-      if (adopter) {
-        res.status(200).json(adopter);
+  Users.update(req.params.id, changes)
+    .then((user) => {
+      if (user) {
+        res.status(200).json(user);
       } else {
-        res.status(404).json({ message: "The adopter could not be found" });
+        res.status(404).json({ message: "The user could not be found" });
       }
     })
     .catch((error) => {
       console.log(error);
       res.status(500).json({
-        message: "Error updating the adopter",
+        message: "Error updating the user",
       });
     });
 });
