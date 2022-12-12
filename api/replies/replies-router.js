@@ -1,5 +1,5 @@
 const express = require("express");
-const Dog = require("./dogs-model");
+const Replies = require("./replies-model");
 const router = express.Router();
 
 // DOGS ENDPOINTS

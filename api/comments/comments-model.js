@@ -15,16 +15,13 @@ function find(query) {
   const { page = 1, limit = 2, sortby = "id", sortdir = "asc" } = query;
   const offset = limit * (page - 1);
 
-  const rows = db("adopters")
-    .orderBy(sortby, sortdir)
-    .limit(limit)
-    .offset(offset);
+  const rows = db("users").orderBy(sortby, sortdir).limit(limit).offset(offset);
 
   return rows;
 }
 
 function findById(id) {
-  return db("adopters").where({ id }).first();
+  return db("users").where({ id }).first();
 }
 
 async function add(adopter) {
