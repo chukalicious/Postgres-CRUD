@@ -1,4 +1,5 @@
-# CRUD Backend for Frontend Mentor challenge
+# CRUD Backend with Postgres setup
+### Includes Basic CRUD Methods
 
 Simple Web API using `Node.js` and `Express`,
 
