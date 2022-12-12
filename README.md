@@ -1,4 +1,4 @@
-# CRUD Starter Code
+# CRUD Backend for Frontend Mentor challenge
 
 Simple Web API using `Node.js` and `Express`,
 
