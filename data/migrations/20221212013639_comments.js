@@ -8,9 +8,15 @@ exports.up = function (knex) {
     .createTable("comments", (tbl) => {
       tbl.increments();
       tbl.text("comment").notNullable();
-      tbl.date("datetime").notNullable();
-      //   tbl.text("reply");
-      tbl.integer("point").notNullable();
+      tbl.date("date").notNullable();
+      tbl.integer("points").notNullable();
+      tbl
+        .integer("user_id")
+        .references("id")
+        .inTable("users")
+        .unsigned()
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     });
   // .createTable("replies", (tbl) => {
   //   tbl.increments();
