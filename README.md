@@ -9,8 +9,8 @@ Simple Web API using `Node.js` and `Express`
 
 ## Project Setup
 
-- [ ] clone this repository.
-- [ ] **CD into its root directory** where you cloned the repo.
+- [ ] fork this repo
+- [ ] **CD into its root directory** where you cloned the repo
 - [ ] enter `npm i` to download dependencies
 - [ ] enter `npm run` server to start the server
 - [ ] create `.env` file and create a variable named `DATABASE_URL=` and give it the value of a postgress database
