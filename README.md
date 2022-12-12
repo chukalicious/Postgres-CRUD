@@ -1,5 +1,5 @@
 # CRUD Backend with Postgres setup
-### Includes Basic CRUD Methods
+### Includes Basic CRUD Methods for an example API
 
 Simple Web API using `Node.js` and `Express`,
 
